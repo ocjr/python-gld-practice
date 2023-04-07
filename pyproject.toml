@@ -27,7 +27,6 @@ dynamic = ["version"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["mathTools"]
 namespaces = false
 
 [tool.setuptools.dynamic]
