@@ -2,9 +2,20 @@
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "mathTools"
+version = "2023.4.7.7"
+authors = [
+    {name = "Joe O'Connell", email = "github@bravoindia.net"},
+]
+description = "A math package to practice building python packages"
+readme = "README.md"
+requires-python = ">=3.6"
+
+
 [tool.setuptools]
 name = "mathTools"
-version = "2023.4.7.6"
+version = "2023.4.7.7"
 packages = ["find:"]
 where = "src"
 install_requires = ["ipython", "black", "pandas", "pytest", "mypy"]
