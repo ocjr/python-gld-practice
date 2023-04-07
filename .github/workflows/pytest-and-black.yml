@@ -1,0 +1,22 @@
+name: Pytest and Black
+    
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: 
+        pip install setuptools
+        pip install wheel
+        pip install git+https://github.com/ocjr/python-gld-practice.git
+    - name: Run pytest
+      run: pytest
+    - name: Run black
+      run: black .
+    - name: Run mypy
+      run: mypy --ignore-missing-imports src/
