@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mathTools"
+authors = [
+    {name = "Joe O'Connell", email = "github@bravoindia.net"},
+]
+description = "A math package to practice building python packages"
+readme = "README.md"
+requires-python = ">=3.6"
+keywords = ["python","practice"]
+license = {text = "None"}
+classifiers = [
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "ipython",
+    "black",
+    "pandas",
+    "pytest",
+    "mypy",
+]
+dynamic = ["version"]
+
+[tool.setuptools]
+packages = ["mathTools"]
+
+[tool.setuptools.dynamic]
+version = {attr = "mathTools.2023.4.0"}
