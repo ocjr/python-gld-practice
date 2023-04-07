@@ -10,10 +10,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Install dependencies
-      run: 
-        pip install setuptools
-        pip install wheel
-        pip install git+https://github.com/ocjr/python-gld-practice.git
+      run: |
+        if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+          pip install git+https://github.com/ocjr/python-gld-practice.git
+        elif [[ "${{ github.ref }}" != "refs/heads/main" ]]; then
+          pip install git+https://github.com/ocjr/python-gld-practice.git@${{ github.ref }}
+        else
+          echo "Unsupported branch: ${{ github.ref }}"
+          exit 1
+        fi    
     - name: Run pytest
       run: pytest
     - name: Run black
