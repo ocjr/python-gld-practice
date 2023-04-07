@@ -1,0 +1,27 @@
+name: Pytest and Black
+    
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        if ($env:GITHUB_REF -eq 'refs/heads/main') {
+          pip install git+https://github.com/ocjr/python-gld-practice.git
+        } elseif ($env:GITHUB_REF -ne 'refs/heads/main') {
+          pip install git+https://github.com/ocjr/python-gld-practice.git@${env:GITHUB_REF}
+        } else {
+          echo "Unsupported branch: $env:GITHUB_REF"
+          exit 1
+        }
+    - name: Run pytest
+      run: pytest
+    - name: Run black
+      run: black .
+    - name: Run mypy
+      run: mypy --ignore-missing-imports src/
